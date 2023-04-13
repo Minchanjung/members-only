@@ -1,0 +1,18 @@
+doctype html 
+html 
+    head 
+        title Members Only 
+        link(rel="stylesheet", href="/stylesheets/style.css") 
+    body 
+        div#headerContainer 
+            h1#logo Members-Only 
+            div#rightContainer 
+                if true 
+                    div#logInButton Log In 
+                    div#signUpButton Sign Up 
+                else 
+                    div#messageButton Create Message 
+                    div#logOutButton Log Out 
+        
+        div#mainBodyContaienr 
+            block content
