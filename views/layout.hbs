@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>Members Only</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{{body}}}
+    <div id="headerContainer">
+      <h1 id="logo">Members-Only</h1>
+      <div id="rightContainer">
+        {{#if true}}
+        <div id="logInButton">Log In</div>
+        <div id="signUpButton">Sign Up</div>
+        {{else}}
+        <div id="messageButton">Create Message</div>
+        <div id="logOutbutton">Log Out</div>
+      </div>
+    </div>
+    {{> home}}
   </body>
 </html>

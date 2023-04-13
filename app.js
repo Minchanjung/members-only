@@ -47,4 +47,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//hbs partials
+Handlebars.registerPartial("")
+
 module.exports = app;
