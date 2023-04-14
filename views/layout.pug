@@ -7,14 +7,15 @@ html
         div#headerContainer 
             h1#logo Members-Only 
             div#rightContainer 
-                if true 
+                if !locals.currentUser
                     div#logInButton 
                         a(href="/login") Log In
                     div#signUpButton 
                         a(href="/signup") Sign Up
                 else 
                     div#messageButton Create Message 
-                    div#logOutButton Log Out 
+                    div#logOutButton 
+                        a(href="/log-out") Log Out
         
         div#mainBodyContaienr 
             block content

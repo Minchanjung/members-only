@@ -32,12 +32,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 passport.use(
-  new LocalStrategy(async(email, password, done) => {
-    console.log(email);
-    console.log(password);
-    console.log('checking pass')
+  new LocalStrategy(async(username, password, done) => {
     try {
-      const user = await User.findOne({ email: email});
+      const user = await User.findOne({ username: username});
       console.log(user);
       if (!user) {
         return done(null, false, { message: "incorrect email" });
@@ -53,6 +50,7 @@ passport.use(
 )
 
 passport.serializeUser(function(user, done) {
+  console.log("inside serialize");
   done(null, user.id);
 });
 
@@ -69,6 +67,10 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+})
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -78,11 +80,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use("/", signupRouter)
-app.post('/login', passport.authenticate("local", { 
-  successRedirect: "/", 
-  failureRedirect: "/signup", 
-}))
+app.use("/", signupRouter);
+app.post('/login', loginRouter);
+app.get("/log-out", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
