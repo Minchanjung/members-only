@@ -1,24 +1,10 @@
 const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 exports.sign_up_form_get = async (req, res, next) => {
     res.render("sign-up-form")
 }
-
-/*exports.sign_up_form_post = async (req, res, next) => {
-    try {
-        const user = new User({
-            email: req.body.email, 
-            username: req.body.username, 
-            password: req.body.password,
-        })
-
-        const result = user.save();
-        res.redirect("/");
-    } catch(err) {
-        return next(err);
-    }
-}*/
 
 exports.sign_up_form_post = [
     body("email", "email must not be empty")
@@ -51,12 +37,6 @@ exports.sign_up_form_post = [
         console.log("in the async function");
         const errors = validationResult(req);
 
-        const user = new User({
-            email: req.body.email, 
-            username: req.body.username, 
-            password: req.body.password,
-        })
-
         if (!errors.isEmpty()) {
             console.log("in if statement")
             try {
@@ -65,14 +45,27 @@ exports.sign_up_form_post = [
                 next(err);
             }
         }
-        try {
-            console.log("saving user");
-            console.log(user);
-            const userSave = await user.save();
-            console.log(userSave);
-            res.redirect("/");
-        } catch(err) {
-            next(err)
-        }
+
+        bcrypt.hash(`${req.body.password}`, 10, async (err, hashedPassword) => {
+            if (err) {
+                console.log(error);
+            }
+
+            const user = new User({
+                email: req.body.email, 
+                username: req.body.username, 
+                password: hashedPassword,
+            })
+
+            try {
+                console.log("saving user");
+                console.log(user);
+                const userSave = await user.save();
+                console.log(userSave);
+                res.redirect("/");
+            } catch(err) {
+                next(err)
+            }
+        })  
     }
 ]
