@@ -10,7 +10,8 @@ require("dotenv").config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const signupRouter = require("./routes/signup")
+const signupRouter = require("./routes/signup");
+const loginRouter = require("./routes/login");
 
 const User = require("./models/User");
 const Message = require("./models/Message");
@@ -31,11 +32,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 passport.use(
-  new LocalStrategy(async (username, password) => {
+  new LocalStrategy(async(email, password, done) => {
+    console.log(email);
+    console.log(password);
+    console.log('checking pass')
     try {
-      const user = await User.findOne({ username: username });
+      const user = await User.findOne({ email: email});
+      console.log(user);
       if (!user) {
-        return done(null, false, { message: "incorrect username" });
+        return done(null, false, { message: "incorrect email" });
       }
       if (user.password !== password) {
         return done(null, false, { message: "incorrect password" });
@@ -46,6 +51,19 @@ passport.use(
     }
   })
 )
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async function(id, done) {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -61,6 +79,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/", signupRouter)
+app.post('/login', passport.authenticate("local", { 
+  successRedirect: "/", 
+  failureRedirect: "/signup", 
+}))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

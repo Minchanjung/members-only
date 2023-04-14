@@ -1,4 +1,14 @@
 extends layout 
 
 block content 
-    h1 this will be main page 
+    div#logInContainer 
+        form(action="/login", method="POST") 
+            label(for='email') Email
+            input(name="email", placeholder="email", type="text") 
+            label(for="password") Password 
+            input(name="password", placeholder="password", type="text") 
+            button Log In 
+    if user 
+        h1 hello #{user.username}
+    else 
+        h1 nobody logged in

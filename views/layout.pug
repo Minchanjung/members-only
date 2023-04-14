@@ -8,8 +8,10 @@ html
             h1#logo Members-Only 
             div#rightContainer 
                 if true 
-                    div#logInButton Log In 
-                    div#signUpButton Sign Up 
+                    div#logInButton 
+                        a(href="/login") Log In
+                    div#signUpButton 
+                        a(href="/signup") Sign Up
                 else 
                     div#messageButton Create Message 
                     div#logOutButton Log Out 
