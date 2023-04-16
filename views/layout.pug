@@ -9,11 +9,12 @@ html
             div#rightContainer 
                 if !locals.currentUser
                     div#logInButton 
-                        a(href="/login") Log In
+                        a(onclick=style.block) Log In
                     div#signUpButton 
                         a(href="/signup") Sign Up
                 else 
-                    div#messageButton Create Message 
+                    div#messageButton 
+                        a(onclick=style.block) Create Message 
                     div#logOutButton 
                         a(href="/log-out") Log Out
         
