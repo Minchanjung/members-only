@@ -5,8 +5,8 @@ block content
     if locals.currentUser 
         div#messageContainer 
             form(action="/create-message", method="POST") 
-                label(for='header') Title 
-                input(name="header", placholder="title", type="text") 
+                label(for='title') Title 
+                input(name="title", placholder="title", type="text") 
                 label(for="message") Message 
                 textarea(name="message", placeholder="message")
                 button Create Message
@@ -22,3 +22,9 @@ block content
         h1 nobody logged in
 
     div#messageContainer 
+        each message in messages 
+            div#messageBlock 
+                h2 #{message.title} 
+                p #{message.message} 
+                div#messageUserContainer 
+                    div #{message.author.username}
