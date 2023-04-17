@@ -41,7 +41,6 @@ exports.create_message_post = [
 ]
 
 exports.get_messages = async (req, res, next) => {
-    const result = await(Message.find({}).sort({date:1}).populate().exec());
-
+    const result = await(Message.find({}).sort({date:1}).populate("author").exec());
     res.render("index", {messages: result})
 }

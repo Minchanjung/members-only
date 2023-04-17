@@ -3,14 +3,13 @@ extends layout
 block content 
     
     if locals.currentUser 
-        div#messageContainer 
+        div#messageFormContainer 
             form(action="/create-message", method="POST") 
                 label(for='title') Title 
                 input(name="title", placholder="title", type="text") 
                 label(for="message") Message 
                 textarea(name="message", placeholder="message")
                 button Create Message
-        h1 hello #{locals.currentUser.username}
     else 
         div#logInContainer 
             form(action="/login", method="POST") 
@@ -19,12 +18,16 @@ block content
                 label(for="password") Password 
                 input(name="password", placeholder="password", type="text") 
                 button Log In 
-        h1 nobody logged in
 
-    div#messageContainer 
+    div#messagesContainer 
         each message in messages 
             div#messageBlock 
                 h2 #{message.title} 
                 p #{message.message} 
                 div#messageUserContainer 
-                    div #{message.author.username}
+                    if (locals.currentUser) 
+                        div#messageInfoContainer 
+                            div#messageInfoLeft Posted By #{message.author.username} 
+                            div#messageInfoRight #{message.postDate}
+                    else 
+                        div Anonymous Sign in to see the Author

@@ -1,8 +1,119 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: black;
+}
+
+/*header styling*/
+
+#headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  align-items: center;
+  padding: 10px;
+}
+
+#logo {
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-left: 2rem;
+  font-size: 3vh;
+}
+
+#rightContainer {
+  display: flex;
+  margin-right: 2rem;
+}
+
+#rightContainer div {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+#rightContainer a {
+  text-align: center;
+}
+
+/*main body styling*/
+
+#messageContainer {
+  display: none;
+}
+
+#logInContainer {
+  display: none;
+}
+
+/*message box*/
+
+#messagesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#messageBlock {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 3rem;
+  width: 40vw;
+}
+
+#messageBlock h2 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+messageBlock p {
+  font-size: 15px;
+}
+
+#messageUserContainer {
+  margin-top: 10px;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+
+/* sign up page*/
+#signUpBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh
+}
+
+#signUpFormContainer {
+  padding: 25px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+}
+
+#signUpFormContainer h1 {
+  margin-right: 2rem;
+}
+
+#signUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#signUpForm label {
+}
+
+#signUpForm input {
+  margin-bottom: 1rem;
+  width: 20rem;
+  padding: 5px;
 }
