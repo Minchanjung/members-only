@@ -44,12 +44,98 @@ a {
 
 /*main body styling*/
 
-#messageContainer {
-  display: none;
+#messageFormContainer {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
+#createMessageForm {
+  display: flex;
+  align-items: center;
+}
+
+#createMessageForm input , 
+#createMessageForm textarea {
+  margin: 0 1rem 0 1rem;
+}
+
+#createMessageForm button {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  padding: 8px .8em;
+  text-align: center;
+  text-decoration: none;
+}
+
+#createMessageForm button:hover,
+#createMessageForm button:focus {
+  background-color: #07c;
+}
+
+#createMessageForm button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+#createMessageForm button:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
+
+
 #logInContainer {
-  display: none;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#formLogIn {
+  display: flex;
+  align-items: center;
+}
+
+#formLogIn input {
+  margin: 0 1rem 0 1rem;
+}
+
+#formLogIn button {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  padding: 8px .8em;
+  text-align: center;
+  text-decoration: none;
+}
+
+#formLogIn button:hover,
+#formLogIn button:focus {
+  background-color: #07c;
+}
+
+#formLogIn button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+#formLogIn button:active {
+  background-color: #0064bd;
+  box-shadow: none;
 }
 
 /*message box*/
@@ -74,14 +160,21 @@ a {
   margin-bottom: 10px;
 }
 
-messageBlock p {
+#messageBlock p {
   font-size: 15px;
+  margin-left: 15px;
 }
 
 #messageUserContainer {
   margin-top: 10px;
   border-top: 1px solid black;
   padding-top: 10px;
+}
+
+#messageInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* sign up page*/
@@ -109,11 +202,37 @@ messageBlock p {
   justify-content: center;
 }
 
-#signUpForm label {
-}
-
 #signUpForm input {
   margin-bottom: 1rem;
   width: 20rem;
   padding: 5px;
+}
+
+#signUpForm button {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  padding: 8px .8em;
+  text-align: center;
+  text-decoration: none;
+}
+
+#signUpForm button:hover,
+#signUpForm button:focus {
+  background-color: #07c;
+}
+
+#signUpForm button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+#signUpForm button:active {
+  background-color: #0064bd;
+  box-shadow: none;
 }

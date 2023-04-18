@@ -8,11 +8,11 @@ html
         link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet")
     body 
         div#headerContainer 
-            h1#logo Members-Only 
+            a(href="/")
+                h1#logo Members-Only 
             div#rightContainer 
                 if !locals.currentUser
-                    div#logInButton 
-                        a() Log In
+                    div#logInButton Log In
                     div#signUpButton 
                         a(href="/signup") Sign Up
                 else 

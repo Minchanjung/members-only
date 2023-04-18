@@ -4,7 +4,7 @@ block content
     
     if locals.currentUser 
         div#messageFormContainer 
-            form(action="/create-message", method="POST") 
+            form#createMessageForm(action="/create-message", method="POST") 
                 label(for='title') Title 
                 input(name="title", placholder="title", type="text") 
                 label(for="message") Message 
@@ -12,7 +12,7 @@ block content
                 button Create Message
     else 
         div#logInContainer 
-            form(action="/login", method="POST") 
+            form#formLogIn(action="/login", method="POST") 
                 label(for='username') Username
                 input(name="username", placeholder="username", type="text") 
                 label(for="password") Password 

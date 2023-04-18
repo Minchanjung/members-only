@@ -1,6 +1,6 @@
-const User = require("../models/User");
 const Message = require("../models/Message");
 const { body, validationResult } = require("express-validator");
+
 
 exports.create_message_post = [
     body("title", "title must not be empty")
@@ -41,6 +41,6 @@ exports.create_message_post = [
 ]
 
 exports.get_messages = async (req, res, next) => {
-    const result = await(Message.find({}).sort({date:1}).populate("author").exec());
+    const result = await(Message.find({}).sort({postDate:-1}).populate("author").exec());
     res.render("index", {messages: result})
 }
